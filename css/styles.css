@@ -1,0 +1,17 @@
+
+
+body {
+    background-color: #FFCC00;
+    margin: 0;
+
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+  #imagen{
+    height: 250px;
+    
+  }
