@@ -1,7 +1,36 @@
 
-let boton =document.getElementById('btn')
+const text = document.querySelector('#text');
+const srtText = text.textContent;
+const splitText = srtText.split("");
+text.textContent = "";
+for (let i =0 ; i <  srtText.length; i++ ) {
+text.innerHTML += "<span>" + splitText[i] + "</span>";  
+}
+
+let char = 0;
+let timer = setInterval(onTick,50);
+
+function onTick(){
+  const span = text.querySelectorAll('span')[char];
+  span.classList.add('faded');
+  char++
+  if(char === splitText.length){
+    complete();
+    return;
+  }
+}
+
+function complete(){
+  clearInterval(timer);
+  timer = null;
+}
+
+
+
+let boton =document.getElementById('btn');
 
 boton.addEventListener('click',()=>{
+
    // 1º vamos a capturar el valor del input
     let box=document.getElementById('box').value
 
@@ -54,14 +83,14 @@ boton.addEventListener('click',()=>{
         {
             backgroundColor: "#FFCC00",
             animationEnabled: true,
-            animationDuration: 2000,
+            animationDuration: 1800,
 
           title:{
-            text: "Estadísticas Habilidades",
+            text: "Estadísticas Base",
             fontFamily: "Impact",
             fontWeight: "normal"
           },
-
+          
           legend:{
             verticalAlign: "bottom",
             horizontalAlign: "center"
@@ -70,10 +99,12 @@ boton.addEventListener('click',()=>{
           {
            startAngle: 55,
            indexLabelFontSize: 20,
+           indexLabel: "{label} - #percent%",
            indexLabelFontFamily: "Garamond",
            indexLabelFontColor: "white",
            indexLabelLineColor: "white",
            indexLabelPlacement: "outside",
+           toolTipContent: "<b>{label}:</b> {y} (#percent%)",
            type: "doughnut",
            // showInLegend: true,
            dataPoints: estadisticas
